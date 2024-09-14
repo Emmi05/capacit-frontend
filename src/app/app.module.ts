@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListaEmpleadosComponent } from './components/empleado/lista-empleados/lista-empleados.component';
@@ -14,6 +13,8 @@ import { ActualizarClienteComponent } from './components/cliente/actualizar-clie
 import { ListarPedidosComponent } from './components/pedido/listar-pedidos/listar-pedidos.component';
 import { ListarCustomersComponent } from './components/customers/listar-customers/listar-customers.component';
 import { ProductoComponent } from './components/producto/producto/producto.component';
+import { PaymentsComponent } from './components/payments/payments.component';
+import { CommonModule } from '@angular/common'; // Añadido
 
 @NgModule({
   declarations: [
@@ -26,13 +27,15 @@ import { ProductoComponent } from './components/producto/producto/producto.compo
     ActualizarClienteComponent,
     ListarPedidosComponent,
     ListarCustomersComponent,
-    ProductoComponent
+    ProductoComponent,
+    PaymentsComponent // Asegúrate de incluir PaymentsComponent aquí
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, //se importa modulo para peticiones HTTP
-    FormsModule
+    HttpClientModule,
+    FormsModule,
+    CommonModule // Añadido aquí
   ],
   providers: [],
   bootstrap: [AppComponent]

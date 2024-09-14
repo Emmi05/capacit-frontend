@@ -1,0 +1,30 @@
+<br>
+<h3>Lista de Pagos</h3>
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Payment Date</th>
+            <th>Amount Paid</th>
+            <th>Payment Method</th>
+            <th>Client ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+<!--Va agarrando los datos del modelo-->
+      
+            <tr *ngFor="let payment of payments">
+            <td>{{ payment.id }}</td>
+            <td>{{ payment.paymentDate }}</td>
+            <td>{{ payment.amountPaid }}</td>
+            <td>{{ payment.paymentMethod }}</td>
+            <td>{{ payment.clientId }}</td>
+            <td>
+                <button  class="btn btn-info">Update</button>
+                <button  class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                <button  class="btn btn-primary" style="margin-left: 10px">Details</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
