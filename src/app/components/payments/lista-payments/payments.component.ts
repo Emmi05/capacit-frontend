@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Payment } from '../../../models/payment/payment'; // modelo
+import { PaymentDTO } from '../../../models/payment/payment'; // modelo
 import { PaymentsService } from '../../../servicios/payment/payments.service'; // servicio
 import { Router } from '@angular/router'; // router para navegación
 
@@ -9,7 +9,7 @@ import { Router } from '@angular/router'; // router para navegación
   styleUrls: ['./payments.component.css']
 })
 export class PaymentsComponent implements OnInit {
-  payments: Payment[] = []; // Array para almacenar los pagos
+  payments: PaymentDTO[] = []; // Array para almacenar los pagos
 
   // Agregar el router al constructor
   constructor(private PaymentsService: PaymentsService, private router: Router) { }
@@ -22,7 +22,7 @@ export class PaymentsComponent implements OnInit {
   loadPayments(): void {
     // Traer el método del servicio que obtiene todos los payments
     this.PaymentsService.getPayments().subscribe(
-      (data: Payment[]) => {
+      (data: PaymentDTO[]) => {
         this.payments = data; // Si es correctamente muestra el array
       },
       (error) => {

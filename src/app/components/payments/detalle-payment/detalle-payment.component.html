@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="detalle-payment.component.css">
 <h3>Detalles del Payment</h3>
 <div>
     <div>
@@ -12,6 +13,25 @@
     <div>
         <label><b>paymentMethod : </b>{{payment.paymentMethod}}</label>
     </div>
-    <p>Cliente ID: {{ payment.cliente.id }}</p>
-    <p>Nombre del Cliente: {{ payment.cliente.nombre }}</p>
+    <div class="text-center">
+        <label class="client-text">Datos del cliente:</label>
+      </div>
+      
+    <div>
+        <label><b>Cliente Id : </b>{{payment.cliente.id}}</label>
     </div>
+    <div>
+        <label><b>Nombre: </b>{{payment.cliente.nombre}}</label>
+    </div>
+    <div>
+        <label><b>Dirección: </b>{{payment.cliente.direccion}}</label>
+    </div>
+    <div>
+        <label><b>Telefono: </b>{{payment.cliente.telefono}}</label>
+    </div>
+    <div>
+        <label><b>Correo: </b>{{payment.cliente.correo}}</label>
+    </div>
+</div>
+<!-- Botón grande y centrado -->
+<button (click)="goBack()" class="btn btn-info btn-lg d-block mx-auto">Regresar</button>

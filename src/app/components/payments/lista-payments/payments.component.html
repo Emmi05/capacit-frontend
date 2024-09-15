@@ -8,22 +8,22 @@
             <th>Amount Paid</th>
             <th>Payment Method</th>
             <th>Client ID</th>
+            <th>Client Name</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-<!--Va agarrando los datos del modelo-->
-      
-            <tr *ngFor="let payment of payments">
+        <tr *ngFor="let payment of payments">
             <td>{{ payment.id }}</td>
             <td>{{ payment.paymentDate }}</td>
             <td>{{ payment.amountPaid }}</td>
             <td>{{ payment.paymentMethod }}</td>
-            <td>{{ payment.clientId }}</td>
+            <td>{{ payment.cliente.id }}</td> <!-- Actualiza aquí -->
+            <td>{{ payment.cliente.nombre }}</td> <!-- Actualiza aquí -->
             <td>
-                <button  class="btn btn-info">Update</button>
-                <button  class="btn btn-danger" style="margin-left: 10px">Delete</button>
-                <button (click)="verDetallesPayment(payment.id)"  class="btn btn-primary" style="margin-left: 10px">Details</button>
+                <button class="btn btn-info">Update</button>
+                <button class="btn btn-danger" style="margin-left: 10px">Delete</button>
+                <button (click)="verDetallesPayment(payment.id)" class="btn btn-primary" style="margin-left: 10px">Details</button>
             </td>
         </tr>
     </tbody>

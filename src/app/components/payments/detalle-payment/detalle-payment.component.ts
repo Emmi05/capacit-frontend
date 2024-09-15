@@ -1,8 +1,8 @@
 import swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'; // Para obtener el parámetro de la URL
-import { Payment } from '../../../models/payment/payment'; // modelo
-import { PaymentsService } from '../../../servicios/payment/payments.service'; //servicio
+import { ActivatedRoute,Router } from '@angular/router'; // Para obtener el parámetro de la URL
+import { PaymentDTO } from '../../../models/payment/payment'; // Cambiar a DTO
+import { PaymentsService } from '../../../servicios/payment/payments.service'; // Servicio
 
 @Component({
   selector: 'app-detalle-payment',
@@ -10,23 +10,24 @@ import { PaymentsService } from '../../../servicios/payment/payments.service'; /
   styleUrls: ['./detalle-payment.component.css']
 })
 export class DetallePaymentComponent implements OnInit {
- id:number;
- payment:Payment;
+  id: number;
+  payment: PaymentDTO; // Cambiar a PaymentDTO
 
   constructor(
-    private route: ActivatedRoute, // Inyectamos ActivatedRoute para obtener el ID de la URL
-    private PaymentsService: PaymentsService // Inyectamos el servicio de Payments
+    private route: ActivatedRoute,
+    private paymentsService: PaymentsService,
+    private router: Router // Inyectar Router
   ) {}
 
   ngOnInit(): void {
     // Obtener el parámetro 'id' de la URL
     this.id = this.route.snapshot.params['id'];
-    this.payment = new Payment(); // Iniciar payment antes de cargar datos
+    this.payment = {} as PaymentDTO; // Inicializar payment como un objeto vacío de PaymentDTO
     // Llamar al servicio para obtener los detalles del pago
-    this.PaymentsService.getPaymentById(this.id).subscribe(
-      (dato: Payment) => {
+    this.paymentsService.getPaymentById(this.id).subscribe(
+      (dato: PaymentDTO) => { // Cambiar el tipo de dato a PaymentDTO
         this.payment = dato;
-        swal(`Detalles del payment ${this.payment.id}`);
+        swal(`Detalles del pago ${this.payment.id} `);
       },
       (error) => {
         console.error('Error al cargar detalles del pago:', error);
@@ -34,5 +35,7 @@ export class DetallePaymentComponent implements OnInit {
       }
     );
   }
-  
+  goBack(): void {
+    this.router.navigate(['/payments']); // Redirigir a la lista de pagos
+  }
 }
