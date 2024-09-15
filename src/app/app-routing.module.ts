@@ -10,6 +10,7 @@ import { ListarPedidosComponent } from './components/pedido/listar-pedidos/lista
 import { PaymentsComponent } from './components/payments/lista-payments/payments.component'; // mi componente ts
 import { DetallePaymentComponent } from './components/payments/detalle-payment/detalle-payment.component'; // mi componente ts
 import { ActualizarPaymentComponent } from './components/payments/actualizar-payment/actualizar-payment.component'; // mi componente ts
+import { RegistrarPaymentComponent } from './components/payments/registrar-payment/registrar-payment.component';
 
 //aqui se configuran las rutas URL a donde tienen que redireccionar (componentes)
 
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'payments', component: PaymentsComponent },
   {path: 'detalle-payment/:id', component: DetallePaymentComponent },
   {path: 'actualizar-payment/:id', component: ActualizarPaymentComponent },
+  {path: 'registrar-payment', component: RegistrarPaymentComponent },
 
 ];
 

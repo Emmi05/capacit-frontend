@@ -1,0 +1,91 @@
+<div class="col-md-6 offset-md-3">
+    <h3 class="text-center">Registro de Pago</h3>
+    <form (ngSubmit)="onSubmit()" #paymentForm="ngForm">
+       
+        <div class="form-group">
+            <label>Fecha de Pago : </label>
+            <input 
+                type="date" 
+                class="form-control" 
+                id="paymentDate" 
+                [(ngModel)]="payment.paymentDate" 
+                name="paymentDate" 
+                required 
+                #paymentDate="ngModel">
+            <div class="alert alert-danger" *ngIf="paymentDate.invalid && (paymentDate.dirty || paymentDate.touched)">
+                <div *ngIf="paymentDate.errors.required">
+                    Digite la fecha del pago por favor
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Monto Pagado : </label>
+            <input 
+                type="number" 
+                class="form-control" 
+                id="amountPaid" 
+                [(ngModel)]="payment.amountPaid" 
+                name="amountPaid" 
+                required 
+                min="0.01" 
+                placeholder="Digite el monto pagado" 
+                #amountPaid="ngModel">
+            <div class="alert alert-danger" *ngIf="amountPaid.invalid && (amountPaid.dirty || amountPaid.touched)">
+                <div *ngIf="amountPaid.errors.required">
+                    Digite el monto pagado por favor
+                </div>
+                <div *ngIf="amountPaid.errors.min">
+                    El monto pagado debe ser mayor a 0.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Método de Pago : </label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="paymentMethod" 
+                [(ngModel)]="payment.paymentMethod" 
+                name="paymentMethod" 
+                required 
+                minlength="4" 
+                maxlength="20" 
+                pattern="[A-Za-z0-9 ]+" 
+                placeholder="Digite el método de pago" 
+                #paymentMethod="ngModel">
+            <div class="alert alert-danger" *ngIf="paymentMethod.invalid && (paymentMethod.dirty || paymentMethod.touched)">
+                <div *ngIf="paymentMethod.errors.required">
+                    Digite el método de pago por favor
+                </div>
+                <div *ngIf="paymentMethod.errors.minlength">
+                    El método de pago debe contener mínimo 4 caracteres
+                </div>
+                <div *ngIf="paymentMethod.errors.maxlength">
+                    El método de pago debe contener máximo 20 caracteres
+                </div>
+                <div *ngIf="paymentMethod.errors.pattern">
+                    El método de pago no puede contener caracteres especiales.
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Seleccionar Cliente : </label>
+            <select 
+                class="form-control" 
+                id="cliente" 
+                [(ngModel)]="payment.cliente.id" 
+                name="cliente" 
+                #clientId="ngModel" 
+                required>
+                <option *ngFor="let client of filteredClients" [value]="client.id">{{ client.nombre }}</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="clientId.invalid && (clientId.dirty || clientId.touched)">
+                <div *ngIf="clientId.errors?.required">
+                    Seleccione un cliente por favor
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-success" [disabled]="!paymentForm.form.valid">Guardar</button>
+    </form>
+</div>

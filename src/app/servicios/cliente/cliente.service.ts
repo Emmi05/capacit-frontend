@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Cliente } from '../../models/cliente/cliente';
+import { ClienteDTO } from '../../models/payment/payment'; // Modelo de pago
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,17 @@ export class ClienteService {
   private baseURL = "http://localhost:8080/api/v1/clientes";
 
   constructor(private httpClient: HttpClient) {  }
-
-  listarClientes():Observable<Cliente[]> {
-    return this.httpClient.get<Cliente[]>(`${this.baseURL}`);
+  // Método para obtener todos los clientes
+  getClientes(): Observable<ClienteDTO[]> {
+    return this.httpClient.get<ClienteDTO[]>(this.baseURL);
   }
 
-  getClienteById(id:Number):Observable<Cliente> {
-    return this.httpClient.get<Cliente>(`${this.baseURL}/buscarPorId/${id}`);
+  listarClientes():Observable<ClienteDTO[]> {
+    return this.httpClient.get<ClienteDTO[]>(`${this.baseURL}`);
+  }
+
+  getClienteById(id:Number):Observable<ClienteDTO> {
+    return this.httpClient.get<ClienteDTO>(`${this.baseURL}/buscarPorId/${id}`);
   }  
+
 }

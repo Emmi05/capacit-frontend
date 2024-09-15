@@ -16,10 +16,10 @@ export class PaymentsService {
     return this.http.get<PaymentDTO[]>(this.apiUrl);
   }
 
-  // Método para crear un nuevo pago
-  createPayment(payment: PaymentDTO): Observable<PaymentDTO> { // Cambiar a PaymentDTO
-    return this.http.post<PaymentDTO>(`${this.apiUrl}/payments`, payment);
-  }
+ // Método para crear un nuevo pago
+ createPayment(payment: PaymentDTO): Observable<PaymentDTO> {
+  return this.http.post<PaymentDTO>(this.apiUrl, payment);
+}
 
   // Método para obtener un pago por ID
   getPaymentById(id: number): Observable<PaymentDTO> { // Cambiar a PaymentDTO

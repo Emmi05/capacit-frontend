@@ -16,7 +16,8 @@ import { ProductoComponent } from './components/producto/producto/producto.compo
 import { PaymentsComponent } from './components/payments/lista-payments/payments.component';
 import { CommonModule } from '@angular/common';
 import { DetallePaymentComponent } from './components/payments/detalle-payment/detalle-payment.component';
-import { ActualizarPaymentComponent } from './components/payments/actualizar-payment/actualizar-payment.component'; // Añadido
+import { ActualizarPaymentComponent } from './components/payments/actualizar-payment/actualizar-payment.component';
+import { RegistrarPaymentComponent } from './components/payments/registrar-payment/registrar-payment.component'; // Añadido
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ActualizarPaymentComponent } from './components/payments/actualizar-pay
     ProductoComponent,
     PaymentsComponent,
     DetallePaymentComponent,
-    ActualizarPaymentComponent // Asegúrate de incluir PaymentsComponent aquí
+    ActualizarPaymentComponent,
+    RegistrarPaymentComponent // Asegúrate de incluir PaymentsComponent aquí
   ],
   imports: [
     BrowserModule,
