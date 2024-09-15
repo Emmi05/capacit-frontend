@@ -13,8 +13,9 @@ import { ActualizarClienteComponent } from './components/cliente/actualizar-clie
 import { ListarPedidosComponent } from './components/pedido/listar-pedidos/listar-pedidos.component';
 import { ListarCustomersComponent } from './components/customers/listar-customers/listar-customers.component';
 import { ProductoComponent } from './components/producto/producto/producto.component';
-import { PaymentsComponent } from './components/payments/payments.component';
-import { CommonModule } from '@angular/common'; // Añadido
+import { PaymentsComponent } from './components/payments/lista-payments/payments.component';
+import { CommonModule } from '@angular/common';
+import { DetallePaymentComponent } from './components/payments/detalle-payment/detalle-payment.component'; // Añadido
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CommonModule } from '@angular/common'; // Añadido
     ListarPedidosComponent,
     ListarCustomersComponent,
     ProductoComponent,
-    PaymentsComponent // Asegúrate de incluir PaymentsComponent aquí
+    PaymentsComponent,
+    DetallePaymentComponent // Asegúrate de incluir PaymentsComponent aquí
   ],
   imports: [
     BrowserModule,
