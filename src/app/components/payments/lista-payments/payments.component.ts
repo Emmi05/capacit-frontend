@@ -30,9 +30,13 @@ export class PaymentsComponent implements OnInit {
       }
     );
   }
-
-  // Método para ver detalles del pago
+//aqui ellos me llevan a la ruta
+  
   verDetallesPayment(id: number) {
-    this.router.navigate(['detalle-payment', id]); // Navegar a la ruta de detalles con el ID del pago
+    this.router.navigate(['detalle-payment', id]); 
   }
+  actualizarpayment(id:number) {
+    this.router.navigate(['actualizar-payment',id]);
+  }
+
 }

@@ -21,7 +21,7 @@
             <td>{{ payment.cliente.id }}</td> <!-- Actualiza aquí -->
             <td>{{ payment.cliente.nombre }}</td> <!-- Actualiza aquí -->
             <td>
-                <button class="btn btn-info">Update</button>
+                <button (click)="actualizarpayment(payment.id)" class="btn btn-info">Update</button>
                 <button class="btn btn-danger" style="margin-left: 10px">Delete</button>
                 <button (click)="verDetallesPayment(payment.id)" class="btn btn-primary" style="margin-left: 10px">Details</button>
             </td>

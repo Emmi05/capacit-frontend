@@ -9,6 +9,7 @@ import { ActualizarClienteComponent } from './components/cliente/actualizar-clie
 import { ListarPedidosComponent } from './components/pedido/listar-pedidos/listar-pedidos.component';
 import { PaymentsComponent } from './components/payments/lista-payments/payments.component'; // mi componente ts
 import { DetallePaymentComponent } from './components/payments/detalle-payment/detalle-payment.component'; // mi componente ts
+import { ActualizarPaymentComponent } from './components/payments/actualizar-payment/actualizar-payment.component'; // mi componente ts
 
 //aqui se configuran las rutas URL a donde tienen que redireccionar (componentes)
 
@@ -21,8 +22,10 @@ const routes: Routes = [
   {path : 'clientes', component:ListarClientesComponent},
   {path : 'actualizar-cliente/:id', component : ActualizarClienteComponent},
   {path : 'pedidos', component : ListarPedidosComponent},
-  { path: 'payments', component: PaymentsComponent },
-  { path: 'detalle-payment/:id', component: DetallePaymentComponent },
+  {path: 'payments', component: PaymentsComponent },
+  {path: 'detalle-payment/:id', component: DetallePaymentComponent },
+  {path: 'actualizar-payment/:id', component: ActualizarPaymentComponent },
+
 ];
 
 @NgModule({
