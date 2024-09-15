@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentDTO } from '../../../models/payment/payment'; // modelo
 import { PaymentsService } from '../../../servicios/payment/payments.service'; // servicio
 import { Router } from '@angular/router'; // router para navegación
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payments',
@@ -38,5 +39,37 @@ export class PaymentsComponent implements OnInit {
   actualizarpayment(id:number) {
     this.router.navigate(['actualizar-payment',id]);
   }
-
+  private obtenerPayment() {
+    this.PaymentsService.getPayments().subscribe(dato => {
+      this.payments = dato;
+    });
+  }
+  eliminarPayment(id:number) {
+    swal({
+      title : "¿Estás seguro?",
+      text : "Confirma si deseas eliminar el payment",
+      type : "warning",
+      showCancelButton : true,
+      confirmButtonColor : '#3085d6',
+      cancelButtonColor : '#d33',
+      confirmButtonText : "Si, eliminalo",
+      cancelButtonText : "No, cancelar",
+      confirmButtonClass : "btn btn-success",
+      cancelButtonClass : "btn btn-danger",
+      buttonsStyling : true
+    }).then((result) => {
+      if (result.value) {
+        this.PaymentsService.deletePaymentById(id).subscribe(dato => {
+          console.log(dato);
+          this.obtenerPayment();
+          swal(
+            'Empleado eliminado',
+            'El empleado ha sido eliminado con éxito',
+            'success'
+          )
+        });
+      }
+    })
 }
+}
+
