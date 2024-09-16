@@ -34,7 +34,7 @@ import { RegistrarPaymentComponent } from './components/payments/registrar-payme
     PaymentsComponent,
     DetallePaymentComponent,
     ActualizarPaymentComponent,
-    RegistrarPaymentComponent // Asegúrate de incluir PaymentsComponent aquí
+    RegistrarPaymentComponent 
   ],
   imports: [
     BrowserModule,

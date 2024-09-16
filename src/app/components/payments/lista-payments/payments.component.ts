@@ -32,7 +32,6 @@ export class PaymentsComponent implements OnInit {
     );
   }
 //aqui ellos me llevan a la ruta
-  
   verDetallesPayment(id: number) {
     this.router.navigate(['detalle-payment', id]); 
   }

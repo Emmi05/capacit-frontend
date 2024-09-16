@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PaymentDTO } from '../../models/payment/payment'; // Asegúrate de que el nombre del archivo sea correcto
+import { PaymentDTO } from '../../models/payment/payment'; 
 
 @Injectable({
   providedIn: 'root' // Está en todo el proyecto
@@ -12,7 +12,7 @@ export class PaymentsService {
   constructor(private http: HttpClient) { }
 
   // Método para obtener todos los pagos
-  getPayments(): Observable<PaymentDTO[]> { // Cambiar a PaymentDTO
+  getPayments(): Observable<PaymentDTO[]> { 
     return this.http.get<PaymentDTO[]>(this.apiUrl);
   }
 

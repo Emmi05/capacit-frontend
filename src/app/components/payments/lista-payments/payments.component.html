@@ -18,8 +18,8 @@
             <td>{{ payment.paymentDate }}</td>
             <td>{{ payment.amountPaid }}</td>
             <td>{{ payment.paymentMethod }}</td>
-            <td>{{ payment.cliente.id }}</td> <!-- Actualiza aquí -->
-            <td>{{ payment.cliente.nombre }}</td> <!-- Actualiza aquí -->
+            <td>{{ payment.cliente.id }}</td> 
+            <td>{{ payment.cliente.nombre }}</td> 
             <td>
                 <button (click)="actualizarpayment(payment.id)" class="btn btn-info">Update</button>
                 <button (click)="eliminarPayment(payment.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>

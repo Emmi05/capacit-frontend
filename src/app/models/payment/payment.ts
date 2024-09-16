@@ -8,7 +8,7 @@ export interface ClienteDTO {
   
   export interface PaymentDTO {
     id: number;
-    paymentDate: string;  // Suponiendo que es una cadena en formato ISO
+    paymentDate: string;  
     amountPaid: number;
     paymentMethod: string;
     cliente: ClienteDTO; // Estructura del cliente
