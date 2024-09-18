@@ -3,7 +3,7 @@
 <table class="table table-striped">
     <thead class="table-dark">
         <tr>
-            <th>ID</th>
+          
             <th>Payment Date</th>
             <th>Amount Paid</th>
             <th>Payment Method</th>
@@ -14,16 +14,16 @@
     </thead>
     <tbody>
         <tr *ngFor="let payment of payments">
-            <td>{{ payment.id }}</td>
+           
             <td>{{ payment.paymentDate }}</td>
             <td>{{ payment.amountPaid }}</td>
             <td>{{ payment.paymentMethod }}</td>
             <td>{{ payment.cliente.id }}</td> 
             <td>{{ payment.cliente.nombre }}</td> 
             <td>
-                <button (click)="actualizarpayment(payment.id)" class="btn btn-info">Update</button>
-                <button (click)="eliminarPayment(payment.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
-                <button (click)="verDetallesPayment(payment.id)" class="btn btn-primary" style="margin-left: 10px">Details</button>
+                <button (click)="actualizarpayment(payment.id)" class="btn btn-info">Actualizar</button>
+                <button (click)="eliminarPayment(payment.id)" class="btn btn-danger" style="margin-left: 10px">Eliminar</button>
+                <button (click)="verDetallesPayment(payment.id)" class="btn btn-primary" style="margin-left: 10px">Detalles</button>
             </td>
         </tr>
     </tbody>
