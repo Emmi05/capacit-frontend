@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaymentDTO } from '../../../models/payment/payment'; // modelo
 import { PaymentsService } from '../../../servicios/payment/payments.service'; // servicio
 import { Router } from '@angular/router'; // router para navegación
-import swal from 'sweetalert2';
+import swal from 'sweetalert2'; // Asegúrate de importar Swal correctamente
 
 @Component({
   selector: 'app-payments',
@@ -11,64 +11,74 @@ import swal from 'sweetalert2';
 })
 export class PaymentsComponent implements OnInit {
   payments: PaymentDTO[] = []; // Array para almacenar los pagos
+  currentPage: number = 0; // Página actual
+  pageSize: number = 5; // Tamaño de la página (número de elementos por página)
+  totalPages: number = 0; // Número total de páginas
 
-  // Agregar el router al constructor
-  constructor(private PaymentsService: PaymentsService, private router: Router) { }
+  constructor(private paymentsService: PaymentsService, private router: Router) { }
 
-  // ngOnit se ejecuta una vez cuando el componente se ha inicializado
   ngOnInit(): void {
-    this.loadPayments();
+    this.loadPayments(this.currentPage, this.pageSize);
   }
 
-  loadPayments(): void {
-    // Traer el método del servicio que obtiene todos los payments
-    this.PaymentsService.getPayments().subscribe(
-      (data: PaymentDTO[]) => {
-        this.payments = data; // Si es correctamente muestra el array
-      },
-      (error) => {
-        console.error('Error loading payments:', error); // Muestra mensaje de error
-      }
-    );
+  loadPayments(page: number, size: number): void {
+    this.paymentsService.getPaginatedPayments(page, size).subscribe(response => {
+      this.payments = response.content;
+      this.totalPages = response.totalPages;
+      this.currentPage = response.number;
+    });
   }
-//aqui ellos me llevan a la ruta
+
+  // Funciones para la navegación de páginas
+  onPageChange(page: number): void {
+    if (page >= 0 && page < this.totalPages) {
+      this.loadPayments(page, this.pageSize);
+    }
+  }
+
+  nextPage(): void {
+    if (this.currentPage < this.totalPages - 1) {
+      this.loadPayments(this.currentPage + 1, this.pageSize);
+    }
+  }
+
+  prevPage(): void {
+    if (this.currentPage > 0) {
+      this.loadPayments(this.currentPage - 1, this.pageSize);
+    }
+  }
+
+  // Métodos para ver detalles, actualizar y eliminar pagos
   verDetallesPayment(id: number) {
     this.router.navigate(['detalle-payment', id]); 
   }
-  actualizarpayment(id:number) {
-    this.router.navigate(['actualizar-payment',id]);
+
+  actualizarpayment(id: number) {
+    this.router.navigate(['actualizar-payment', id]);
   }
-  private obtenerPayment() {
-    this.PaymentsService.getPayments().subscribe(dato => {
-      this.payments = dato;
-    });
-  }
-  eliminarPayment(id:number) {
+
+  eliminarPayment(id: number) {
     swal({
-      title : "¿Estás seguro?",
-      text : "Confirma si deseas eliminar el payment",
-      type : "warning",
-      showCancelButton : true,
-      confirmButtonColor : '#3085d6',
-      cancelButtonColor : '#d33',
-      confirmButtonText : "Si, eliminalo",
-      cancelButtonText : "No, cancelar",
-      confirmButtonClass : "btn btn-success",
-      cancelButtonClass : "btn btn-danger",
-      buttonsStyling : true
+      title: "¿Estás seguro?",
+      text: "Confirma si deseas eliminar el payment",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: "Sí, elimínalo",
+      cancelButtonText: "No, cancelar"
     }).then((result) => {
-      if (result.value) {
-        this.PaymentsService.deletePaymentById(id).subscribe(dato => {
-          console.log(dato);
-          this.obtenerPayment();
+      if (result.value) {  // Usa result.value para verificar la confirmación
+        this.paymentsService.deletePaymentById(id).subscribe(() => {
+          // Recargar la página actual después de eliminar
+          this.loadPayments(this.currentPage, this.pageSize);
           swal(
-            'Empleado eliminado',
-            'El empleado ha sido eliminado con éxito',
+            'Payment eliminado',
+            'El payment ha sido eliminado con éxito',
             'success'
-          )
+          );
         });
       }
-    })
+    });
+  }
 }
-}
-

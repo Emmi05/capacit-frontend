@@ -11,7 +11,8 @@ import swal from 'sweetalert2'; // Importar correctamente SweetAlert2
   styleUrls: ['./actualizar-payment.component.css']
 })
 export class ActualizarPaymentComponent implements OnInit {
-  payment: PaymentDTO = { id: 0, paymentDate: '', amountPaid: 0, paymentMethod: '', cliente: { id: 0, nombre: '', direccion: '', correo: '', telefono: '' } };
+  payment: PaymentDTO = { id: 0, paymentDate: '', amountPaid: 0, paymentMethod: '',
+     cliente: { id: 0, nombre: '', direccion: '', correo: '', telefono: '' } };
   clients: ClienteDTO[] = []; // Lista de clientes
   id: number;
 
@@ -21,7 +22,7 @@ export class ActualizarPaymentComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router
   ) { }
-
+//manda a llamar los datos para que se me muestren
   ngOnInit(): void {
     this.id = +this.route.snapshot.paramMap.get('id')!;
     this.getPaymentDetails();
@@ -72,7 +73,7 @@ export class ActualizarPaymentComponent implements OnInit {
         return; // Detiene el proceso si la validación falla
     }
 
-    this.paymentsService.updatePayment(this.id, this.payment).subscribe(
+    this.paymentsService.updatePayment(this.id, this.payment).subscribe( //si todo esta ok actualiza
         () => {
            swal({
                 title: '¡Éxito!',

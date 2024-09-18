@@ -13,7 +13,6 @@ import { ActualizarPaymentComponent } from './components/payments/actualizar-pay
 import { RegistrarPaymentComponent } from './components/payments/registrar-payment/registrar-payment.component';
 
 //aqui se configuran las rutas URL a donde tienen que redireccionar (componentes)
-
 const routes: Routes = [
   {path : 'empleados',component:ListaEmpleadosComponent},
   {path : '',redirectTo:'empleados',pathMatch:'full'},
@@ -27,7 +26,6 @@ const routes: Routes = [
   {path: 'detalle-payment/:id', component: DetallePaymentComponent },
   {path: 'actualizar-payment/:id', component: ActualizarPaymentComponent },
   {path: 'registrar-payment', component: RegistrarPaymentComponent },
-
 ];
 
 @NgModule({

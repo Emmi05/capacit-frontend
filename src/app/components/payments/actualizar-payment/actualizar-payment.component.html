@@ -4,7 +4,8 @@
        
         <div class="form-group">
             <label>Fecha de Pago : </label>
-            <input type="date" class="form-control" id="paymentDate" [(ngModel)]="payment.paymentDate" name="paymentDate" required #paymentDate="ngModel">
+            <input type="date" class="form-control" id="paymentDate" [(ngModel)]="payment.paymentDate" name="paymentDate" 
+            required #paymentDate="ngModel">
             <div class="alert alert-danger" *ngIf="paymentDate.invalid && (paymentDate.dirty || paymentDate.touched)">
                 <div *ngIf="paymentDate.errors.required">
                     Digite la fecha del pago por favor
@@ -14,7 +15,8 @@
       
         <div class="form-group">
             <label>Monto Pagado : </label>
-            <input type="number" class="form-control" id="amountPaid" [(ngModel)]="payment.amountPaid" name="amountPaid" required min="0.01"  placeholder="Digite el monto pagado"  #amountPaid="ngModel">
+            <input type="number" class="form-control" id="amountPaid" [(ngModel)]="payment.amountPaid" name="amountPaid" required min="0.01"  
+            placeholder="Digite el monto pagado"  #amountPaid="ngModel">
             <div class="alert alert-danger" *ngIf="amountPaid.invalid && (amountPaid.dirty || amountPaid.touched)">
                 <div *ngIf="amountPaid.errors.required">
                     Digite el monto pagado por favor
@@ -28,7 +30,8 @@
 
         <div class="form-group">
             <label>Método de Pago : </label>
-            <input type="text"  class="form-control"  id="paymentMethod"  [(ngModel)]="payment.paymentMethod"  name="paymentMethod"  required  minlength="4"  maxlength="20" placeholder="Digite el método de pago" pattern="[A-Za-z0-9 ]+" 
+            <input type="text"  class="form-control"  id="paymentMethod"  [(ngModel)]="payment.paymentMethod"  name="paymentMethod" 
+             required  minlength="4"  maxlength="20" placeholder="Digite el método de pago" pattern="[A-Za-z0-9 ]+" 
                 #paymentMethod="ngModel">
             <div class="alert alert-danger" *ngIf="paymentMethod.invalid && (paymentMethod.dirty || paymentMethod.touched)">
                 <div *ngIf="paymentMethod.errors.required">
