@@ -5,7 +5,7 @@ import { PaymentDTO } from '../../models/payment/payment';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
-// Interfaz para manejar la paginación
+// Interfaz para manejar la paginación, manejar toda la información necesaria para mostrar una tabla paginada en tu frontend
 export interface Page<T> {
   content: T[];
   pageable: {
@@ -47,7 +47,7 @@ export class PaymentsService {
     return this.http.get<PaymentDTO[]>(this.apiUrl);
   }
 
- // Método para obtener pagos con paginación // Dentro de tu servicio
+ // Método para obtener pagos con paginación, mando a llamar el método 
 getPaginatedPayments(page: number = 0, size: number = 5): Observable<Page<PaymentDTO>> {
   const params = new HttpParams()
     .set('page', page.toString())
@@ -64,17 +64,14 @@ getPaginatedPayments(page: number = 0, size: number = 5): Observable<Page<Paymen
  createPayment(payment: PaymentDTO): Observable<PaymentDTO> {
   return this.http.post<PaymentDTO>(this.apiUrl, payment);
 }
-
   // Método para obtener un pago por ID
   getPaymentById(id: number): Observable<PaymentDTO> { // Cambiar a PaymentDTO
     return this.http.get<PaymentDTO>(`${this.apiUrl}/${id}`);
   }
-
   // Método para actualizar un pago
   updatePayment(id: number, payment: PaymentDTO): Observable<PaymentDTO> { // Cambiar a PaymentDTO
     return this.http.put<PaymentDTO>(`${this.apiUrl}/${id}`, payment);
   }
-
   // Método para eliminar un pago por ID
   deletePaymentById(id: number): Observable<PaymentDTO[]> { // Cambiar a PaymentDTO[]
     return this.http.delete<PaymentDTO[]>(`${this.apiUrl}/${id}`);
